@@ -8,7 +8,7 @@ A custom computer-vision pipeline for classifying spectrogram-like images into *
 
 **Residual CNN · Squeeze-and-Excitation · Multi-task Learning · 5-Fold CV · Pseudo-Labeling · TTA · OOF Blending**
 
-**Final result: 5th place out of 147 participants · Leaderboard score: `0.80436`**
+**Final result: 5th place out of 130 participants · Leaderboard score: `0.80436`**
 
 </div>
 
@@ -299,13 +299,13 @@ Standard Cross-Entropy does not encode this relationship explicitly, while the a
 
 ### Combined loss
 
-$$
+```math
 \mathcal{L}
 =
 (1-\alpha)\mathcal{L}_{CE}
 +
-\alpha\mathcal{L}_{SmoothL1}
-$$
+\alpha\mathcal{L}_{\mathrm{SmoothL1}}
+```
 
 with:
 
@@ -490,13 +490,13 @@ OOF predictions provide a much stronger basis for evaluating and combining model
 
 At inference time, the five fold models form an ensemble:
 
-$$
+```math
 p(x)
 =
 \frac{1}{5}
 \sum_{k=1}^{5}
 p_k(x)
-$$
+```
 
 ---
 
@@ -594,13 +594,13 @@ Pseudo-labeling improves the model, but Stage 1 and Stage 2 do not make identica
 
 Instead of selecting only one stage, the final system blends their probability outputs:
 
-$$
-p_{final}
+```math
+p_{\mathrm{final}}
 =
-(1-w)p_{stage1}
+(1-w)p_{\mathrm{stage1}}
 +
-w p_{stage2}
-$$
+w p_{\mathrm{stage2}}
+```
 
 The weight `w` is selected using **OOF predictions**.
 
